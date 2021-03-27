@@ -1,0 +1,7 @@
+.coin-row{
+  display:flex;
+}
+img{
+  width: auto;
+  height:4rem ;
+}

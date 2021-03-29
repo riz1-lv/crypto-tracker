@@ -1,5 +1,6 @@
 import React from 'react'
 import './Coin.css'
+import Graph from './Graph'
 const Coin = ({name, image, symbol, price, volume, priceChange, marketcap}) => {
 
 
@@ -17,9 +18,10 @@ const Coin = ({name, image, symbol, price, volume, priceChange, marketcap}) => {
           <p className="coin-volume">${volume.toLocaleString()}</p>
           {priceChange < 0 ? (<p className="coin-red">{priceChange.toFixed(2)}%</p>)
           : (<p className="coin-red">{priceChange.toFixed(2)}%</p>)  
-        }
-        <p className="coin-marketcap">Mktcap: ${marketcap.toLocaleString()}</p>
+          }
+          <p className="coin-marketcap">Mktcap: ${marketcap.toLocaleString()}</p>
         </div>
+        <Graph/>
       </div>
     </div>
   )

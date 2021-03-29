@@ -16,7 +16,7 @@ const activate =()=>{
                 labels: ["Jan", "Feb", "March"],
                 datasets: [
                     {
-                        label: "Sales",
+                        label:"",
                         data: [86, 67, 91],
                     }
                 ]

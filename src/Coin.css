@@ -10,7 +10,7 @@
   align-items: center;
   height: 80px;
   border-bottom: 1px solid #d7d7d7;
-  width: 900px;
+  width: 1000px;
 }
 
 .coin{
@@ -40,4 +40,10 @@
   text-align: center;
   justify-content: space-between;
   width: 100%;
+}
+.coin-graph{
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  padding-left:10px ;
 }

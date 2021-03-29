@@ -1,28 +1,60 @@
-import React, { useEffect,useRef } from 'react'
+import React, { useEffect, useRef } from 'react'
 import Chart from 'chart.js';
 
-const Graph = () => {
+const Graph = ({pointData}) => {
 
 let chartRef = useRef()
 
 
+
 const activate =()=>{   
   const myChartRef = chartRef.current.getContext("2d");      
-
+  var gradient = myChartRef.createLinearGradient(0, 40, 0, 0);
+  gradient.addColorStop(0, "rgba(255, 255, 255, 0)");
+  gradient.addColorStop(1, "rgb(36, 152, 4)");
         new Chart(myChartRef, {
             type: "line",
             data: {
                 //Bring in data
-                labels: ["Jan", "Feb", "March"],
+                
                 datasets: [
                     {
-                        label:"",
-                        data: [86, 67, 91],
+                        data: pointData || [36, 67, 91],
+                        backgroundColor: gradient,
+                        borderColor:'rgba(59,172,7,0.65)'
                     }
                 ]
             },
             options: {
-                //Customize chart options
+              legend: {
+                display: false
+             },
+             tooltips: {
+                enabled: false
+             },
+             elements: {
+              point:{
+                  radius: 0
+              }
+            },
+             scales: {
+              xAxes: [{
+                  display:false,
+                  gridLines: {
+                      display:false
+                  }
+              }],
+              yAxes: [{
+                  display:false,
+                  gridLines: {
+                      display:false
+                  },  
+                  title:{
+                    display:false
+                  }
+              }]
+            }
+             
             }
         });
       }
@@ -30,7 +62,7 @@ const activate =()=>{
 
   return (
     <div>
-      <canvas id="myChart" ref={chartRef}  width="200" height="200"></canvas>
+      <canvas id="myChart" ref={chartRef}  width="160" height="40"></canvas>
       <button onClick={() =>{activate()}}>activate</button>
     </div>
   )

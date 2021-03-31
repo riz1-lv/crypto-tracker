@@ -1,9 +1,63 @@
 import React from 'react'
 import './Coin.css'
 import Graph from './Graph'
-const Coin = ({name, image, symbol, price, volume, priceChange, marketcap}) => {
+import { useEffect,useState } from 'react'
+import axios from 'axios'
 
 
+const Coin = ({id, name, image, symbol, price, volume, priceChange, marketcap}) => {
+
+  const [pointData, setPointData] = useState({})
+  let chartData = [];
+
+  const getChartData = () =>{
+    for(let i = 0; i < pointData.prices.length; i++){
+      chartData.push(pointData.prices[i][1]);
+    }
+    chartData = [...chartData];
+    console.log(chartData);
+  }
+
+  /** 
+  useEffect(() => {
+    axios.get(`https://api.coingecko.com/api/v3/coins/${id}/market_chart?vs_currency=usd&days=7&interval=hourly`,
+    {
+    withCredentials: false,
+    headers: {
+      //'Access-Control-Allow-Origin' : 'http://localhost:3000',
+      //'Access-Control-Allow-Methods':'GET,PUT,POST,DELETE,PATCH,OPTIONS',
+      //'Access-Control-Allow-Headers': 'Origin, Content-Type, X-Auth-Token',
+      'Content-Type': 'application/x-www-form-urlencoded' 
+      }
+    }
+  )
+    .then(res =>{
+      setPointData(res.data)
+      console.log(name)
+    })
+    .catch((error)=>{
+      console.log(error)
+    })
+  },[])
+*/
+
+
+useEffect(()=>{
+  axios.get(`https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=usd&days=7&interval=daily`,
+  //{
+  //withCredentials: false,
+  //headers: {
+    //'Access-Control-Allow-Origin' : 'http://localhost:3000',
+    //'Access-Control-Allow-Methods':'GET,PUT,POST,DELETE,PATCH,OPTIONS',
+    //'Access-Control-Allow-Headers': 'Origin, Content-Type, X-Auth-Token',
+    //'Content-Type': 'application/x-www-form-urlencoded' 
+    //}
+  //}
+).then(res=>{
+  setPointData(res.data)
+  console.log(res.data)
+})
+},[])
 
   return (
     <div className="coin-container">
@@ -22,7 +76,8 @@ const Coin = ({name, image, symbol, price, volume, priceChange, marketcap}) => {
           <p className="coin-marketcap">Mktcap: ${marketcap.toLocaleString()}</p>
         </div>
         <div className="coin-graph">
-        <Graph/>
+        <Graph pointData={chartData}/>
+        <button onClick={()=>{getChartData()}}>gen data</button>
       </div>
       </div>
     </div>

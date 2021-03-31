@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useRef } from 'react'
 import Chart from 'chart.js';
 
 const Graph = ({pointData}) => {
@@ -45,6 +45,11 @@ const activate =()=>{
                   }
               }],
               yAxes: [{
+                ticks: {
+                  min: Math.min.apply(this, pointData) - .10,
+                  max: Math.max.apply(this, pointData) + .10,
+                  stepSize:.02
+               },
                   display:false,
                   gridLines: {
                       display:false

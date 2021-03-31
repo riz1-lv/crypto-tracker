@@ -6,13 +6,14 @@ import axios from 'axios'
 
 
 const Coin = ({id, name, image, symbol, price, volume, priceChange, marketcap}) => {
-
+  const url = `https://api.coingecko.com/api/v3/coins/${id}/market_chart?vs_currency=usd&days=7&interval=hourly`;
   const [pointData, setPointData] = useState({})
   let chartData = [];
 
   const getChartData = () =>{
     for(let i = 0; i < pointData.prices.length; i++){
-      chartData.push(pointData.prices[i][1]);
+      let fixed = Number(pointData.prices[i][1].toFixed(2));
+      chartData.push(fixed);
     }
     chartData = [...chartData];
     console.log(chartData);
@@ -43,7 +44,7 @@ const Coin = ({id, name, image, symbol, price, volume, priceChange, marketcap}) 
 
 
 useEffect(()=>{
-  axios.get(`https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=usd&days=7&interval=daily`,
+  axios.get(url,
   //{
   //withCredentials: false,
   //headers: {
@@ -54,33 +55,41 @@ useEffect(()=>{
     //}
   //}
 ).then(res=>{
-  setPointData(res.data)
-  console.log(res.data)
+  setPointData(res.data);
+}).catch((error)=>{
+  console.log(error)
 })
-},[])
+},[url])
+
+useEffect(()=>{
+  console.log(name)
+  console.log(pointData)
+},[pointData,name])
+
+
 
   return (
     <div className="coin-container">
-      <div className="coin-row">
-        <div className="coin">
-          <img src={image} alt="crypto coin"></img>
-          <h1>{name}</h1>
-          <p className="coin-symbol">{symbol}</p>
-        </div>
-        <div className="coin-data">
-          <p className="coin-price">${price}</p>
-          <p className="coin-volume">${volume.toLocaleString()}</p>
-          {priceChange < 0 ? (<p className="coin-red">{priceChange.toFixed(2)}%</p>)
-          : (<p className="coin-red">{priceChange.toFixed(2)}%</p>)  
-          }
-          <p className="coin-marketcap">Mktcap: ${marketcap.toLocaleString()}</p>
-        </div>
-        <div className="coin-graph">
-        <Graph pointData={chartData}/>
-        <button onClick={()=>{getChartData()}}>gen data</button>
+    <div className="coin-row">
+      <div className="coin">
+        <img src={image} alt="crypto coin"></img>
+        <h1>{name}</h1>
+        <p className="coin-symbol">{symbol}</p>
       </div>
+      <div className="coin-data">
+        <p className="coin-price">${price}</p>
+        <p className="coin-volume">${volume.toLocaleString()}</p>
+        {priceChange < 0 ? (<p className="coin-red">{priceChange.toFixed(2)}%</p>)
+        : (<p className="coin-red">{priceChange.toFixed(2)}%</p>)  
+        }
+        <p className="coin-marketcap">Mktcap: ${marketcap.toLocaleString()}</p>
       </div>
+      <div className="coin-graph">
+      <Graph pointData={chartData}/>
+      <button onClick={()=>{getChartData()}}>gen data</button>
     </div>
+    </div>
+  </div>
   )
 }
 

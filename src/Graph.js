@@ -6,8 +6,11 @@ const Graph = ({pointData}) => {
 let chartRef = useRef()
 
 
-
 const activate =()=>{   
+  let label = [];
+for(let i = 0; i < 168; i++ ){
+  label[i] = i
+}
   const myChartRef = chartRef.current.getContext("2d");      
   var gradient = myChartRef.createLinearGradient(0, 40, 0, 0);
   gradient.addColorStop(0, "rgba(255, 255, 255, 0)");
@@ -16,12 +19,13 @@ const activate =()=>{
             type: "line",
             data: {
                 //Bring in data
-                
+                labels:label,
                 datasets: [
                     {
-                        data: pointData || [36, 67, 91],
+                        data: pointData,
                         backgroundColor: gradient,
-                        borderColor:'rgba(59,172,7,0.65)'
+                        borderColor:'rgba(59,172,7,0.65)',
+                        lineTension: 0.4
                     }
                 ]
             },
@@ -39,20 +43,29 @@ const activate =()=>{
             },
              scales: {
               xAxes: [{
+                  
                   display:false,
+                  scaleLabel:{
+                    type:'linear',
+                    display:true,
+                    
+                  },
+                  ticks:{
+                    
+                  },
                   gridLines: {
-                      display:false
+                      display:true
                   }
               }],
               yAxes: [{
                 ticks: {
-                  min: Math.min.apply(this, pointData) - .10,
-                  max: Math.max.apply(this, pointData) + .10,
-                  stepSize:.02
+                 //min: Math.min(...pointData),
+                  //max: Math.max(...pointData),
+                  //stepSize:0.10
                },
                   display:false,
                   gridLines: {
-                      display:false
+                      display:true
                   },  
                   title:{
                     display:false
@@ -62,13 +75,14 @@ const activate =()=>{
              
             }
         });
+        console.log(pointData)
       }
 
 
   return (
     <div>
-      <canvas id="myChart" ref={chartRef}  width="160" height="40"></canvas>
-      <button onClick={() =>{activate()}}>activate</button>
+       <button onClick={() =>{activate()}}>activate</button>
+      <canvas id="myChart" height="40" width="160" ref={chartRef}></canvas>
     </div>
   )
 }

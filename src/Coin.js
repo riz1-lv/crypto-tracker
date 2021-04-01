@@ -1,23 +1,12 @@
 import React from 'react'
 import './Coin.css'
 import Graph from './Graph'
-import { useEffect,useState } from 'react'
-import axios from 'axios'
+import { useEffect} from 'react'
 
 
-const Coin = ({id, name, image, symbol, price, volume, priceChange, marketcap}) => {
-  const url = `https://api.coingecko.com/api/v3/coins/${id}/market_chart?vs_currency=usd&days=7&interval=hourly`;
-  const [pointData, setPointData] = useState({})
-  let chartData = [];
 
-  const getChartData = () =>{
-    for(let i = 0; i < pointData.prices.length; i++){
-      let fixed = Number(pointData.prices[i][1].toFixed(2));
-      chartData.push(fixed);
-    }
-    chartData = [...chartData];
-    console.log(chartData);
-  }
+const Coin = ({id, name, image, symbol, price, volume, priceChange, marketcap, sparkline}) => {
+  
 
   /** 
   useEffect(() => {
@@ -42,8 +31,8 @@ const Coin = ({id, name, image, symbol, price, volume, priceChange, marketcap}) 
   },[])
 */
 
-
-useEffect(()=>{
+/** 
+//useEffect(()=>{
   axios.get(url,
   //{
   //withCredentials: false,
@@ -60,11 +49,11 @@ useEffect(()=>{
   console.log(error)
 })
 },[url])
-
+*/
 useEffect(()=>{
   console.log(name)
-  console.log(pointData)
-},[pointData,name])
+  console.log(sparkline)
+},[])
 
 
 
@@ -85,8 +74,7 @@ useEffect(()=>{
         <p className="coin-marketcap">Mktcap: ${marketcap.toLocaleString()}</p>
       </div>
       <div className="coin-graph">
-      <Graph pointData={chartData}/>
-      <button onClick={()=>{getChartData()}}>gen data</button>
+      <Graph pointData={sparkline}/>
     </div>
     </div>
   </div>

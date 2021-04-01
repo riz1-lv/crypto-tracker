@@ -75,7 +75,6 @@ for(let i = 0; i < 168; i++ ){
              
             }
         });
-        console.log(pointData)
       }
 
 

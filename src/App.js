@@ -2,6 +2,7 @@ import {useEffect, useState, React} from "react"
 import axios from 'axios'
 import './App.css';
 import Coin from "./Coin";
+import Header from "./Header";
 
 
 
@@ -50,6 +51,7 @@ function App() {
         <h1>Search a currency</h1>
         <form> <input type="text" placeholder="Search" className="coin-input" onChange={handleChange}/></form>
       </div>
+      <Header/>
       {filterCoins.map(coin =>{
         return (
           <Coin key={coin.id} name ={coin.name} image={coin.image} symbol={coin.symbol}

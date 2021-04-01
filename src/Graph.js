@@ -1,12 +1,11 @@
-import React, { useRef } from 'react'
+import React, { useRef,useEffect } from 'react'
 import Chart from 'chart.js';
 
 const Graph = ({pointData}) => {
 
 let chartRef = useRef()
 
-
-const activate =()=>{   
+useEffect(() => {
   let label = [];
 for(let i = 0; i < 168; i++ ){
   label[i] = i
@@ -75,12 +74,13 @@ for(let i = 0; i < 168; i++ ){
              
             }
         });
-      }
+      }, [])
+
+  
 
 
   return (
     <div>
-       <button onClick={() =>{activate()}}>activate</button>
       <canvas id="myChart" height="40" width="160" ref={chartRef}></canvas>
     </div>
   )

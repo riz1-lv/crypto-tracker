@@ -1,0 +1,19 @@
+.header-container{
+  display: flex;
+  justify-content: center;
+}
+.header-row{
+  display: flex;
+  flex-direction: row;
+  justify-items: center;
+  align-items: center;
+  height: 80px;
+  border-bottom: 1px solid #d7d7d7;
+  width: 1100px;
+  text-align: center;
+  justify-content: space-between;
+ 
+}
+#coin{
+  padding-left: 50px;
+}

@@ -71,7 +71,7 @@ useEffect(()=>{
         {priceChange < 0 ? (<p className="coin-red">{priceChange.toFixed(2)}%</p>)
         : (<p className="coin-red">{priceChange.toFixed(2)}%</p>)  
         }
-        <p className="coin-marketcap">Mktcap: ${marketcap.toLocaleString()}</p>
+        <p className="coin-marketcap">${marketcap.toLocaleString()}</p>
       </div>
       <div className="coin-graph">
       <Graph pointData={sparkline}/>

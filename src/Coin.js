@@ -1,7 +1,7 @@
 import React from 'react'
 import './Coin.css'
 import Graph from './Graph'
-import { useEffect} from 'react'
+
 
 
 
@@ -50,10 +50,6 @@ const Coin = ({id, name, image, symbol, price, volume, priceChange, marketcap, s
 })
 },[url])
 */
-useEffect(()=>{
-  console.log(name)
-  console.log(sparkline)
-},[])
 
 
 
@@ -68,8 +64,8 @@ useEffect(()=>{
       <div className="coin-data">
         <p className="coin-price">${price}</p>
         <p className="coin-volume">${volume.toLocaleString()}</p>
-        {priceChange < 0 ? (<p className="coin-red">{priceChange.toFixed(2)}%</p>)
-        : (<p className="coin-red">{priceChange.toFixed(2)}%</p>)  
+        {priceChange < 0 ? (<p className="coin-percent red">{priceChange.toFixed(2)}%</p>)
+        : (<p className="coin-percent green">{priceChange.toFixed(2)}%</p>)  
         }
         <p className="coin-marketcap">${marketcap.toLocaleString()}</p>
       </div>

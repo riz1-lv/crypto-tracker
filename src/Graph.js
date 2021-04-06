@@ -24,11 +24,11 @@ for(let i = 0; i < 168; i++ ){
 }
   const myChartRef = chartRef.current.getContext("2d");     
   var greenGradient = myChartRef.createLinearGradient(0, 40, 0, 0);
-  greenGradient.addColorStop(0, "rgba(255, 255, 255, 0)");
+  greenGradient.addColorStop(0, "rgba(0, 0, 0, 0)");
   greenGradient.addColorStop(1, "rgb(36, 152, 4, 0.8)");
 
   var redGradient = myChartRef.createLinearGradient(0, 40, 0, 0);
-  redGradient.addColorStop(0, "rgba(255, 255, 255, 0)");
+  redGradient.addColorStop(0, "rgba(0, 0, 0, 0)");
   redGradient.addColorStop(1, "rgba(240, 65, 53, 0.9)");
   
 
@@ -101,7 +101,7 @@ for(let i = 0; i < 168; i++ ){
 
   return (
     <div>
-      <canvas id="myChart" height="40" width="160" ref={chartRef}></canvas>
+      <canvas id="myChart" height="40" width="170" ref={chartRef}></canvas>
     </div>
   )
 }

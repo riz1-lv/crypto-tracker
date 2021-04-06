@@ -5,14 +5,31 @@ const Header = () => {
     <div className=
     "header-container">
     <div className="header-row">
-      <p id = 'coin'>Coin</p>
-      <p></p>
-      <p>Price</p>
-      <p>Volume</p>
-      <p>24hr </p>
-      <p>Market Cap</p>
+      <div id='coin'>
+        <p>Coin</p>
+      </div>  
+
+  
+      <div id='price'>
+        <p>Price</p>
+      </div>
+
+      <div id='volume'>
+        <p >Volume</p>
+      </div>
       
-      <p>Last 7 days</p>
+      <div id='change'>
+        <p >24hr</p>
+      </div>
+      
+      <div id='market-cap'>
+        <p>Market Cap</p>
+      </div>
+      
+      <div id='seven-days'>
+        <p>Last 7 days</p>
+      </div>
+
       </div>
     </div>
   )

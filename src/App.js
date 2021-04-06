@@ -4,8 +4,6 @@ import './App.css';
 import Coin from "./Coin";
 import Header from "./Header";
 
-
-
 function App() {
 
   const [coins,setCoins] = useState([]);
@@ -30,12 +28,6 @@ function App() {
       console.log(error)
     })
   },[])
-
-
-  
-
-
-
 
   const handleChange = (e) => {
     setSearch(e.target.value)

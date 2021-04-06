@@ -33,7 +33,8 @@
   height: 50px;
   border-radius: 4px;
   border:none;
-  background-image: linear-gradient();
+  background: rgb(66,51,57);
+  background: linear-gradient(90deg, rgba(66,51,57,1) 0%, rgba(60,66,73,1) 100%);
   color:#e2e2e2;
 }
 
